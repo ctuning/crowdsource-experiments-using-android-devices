@@ -1,3 +1,6 @@
+# V2.2
+  * Support for the new CK 1.8.1 version
+
 # V2.1
   * Detecting new type of processors (with CPU implementer,
     CPU architecture, CPU variant, CPU part and CPU revision)

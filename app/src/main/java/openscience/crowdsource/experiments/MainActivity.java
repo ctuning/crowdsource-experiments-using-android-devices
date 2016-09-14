@@ -71,7 +71,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MainActivity extends AppCompatActivity {
 
-    String welcome = "Dear friends! Thank you for participating in experiment crowdsourcing " +
+    String welcome = "We would like to thank you for participating in experiment crowdsourcing " +
             "to collaboratively solve complex problems!\n\n" +
             "One of the available scenarios is collaborative optimization of computer systems: " +
             "computers become very inefficient and it is not uncommon to get 10x speedups, " +
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
             " to download differently optimized kernels with various data sets,"+
             " run them on your mobile device, and send execution statistics back" +
             " to a public Collective Knowledge Server!\n\n"+
-            "We would like to sincerely thank you for supporting our reproducible and open science initiatives " +
-            " and helping us optimize computer systems to accelerate knowledge discovery, " +
-            "boost innovation in science and technology, and make our planet greener!\n";
+            "We would like to sincerely thank you for supporting our reproducible and open science initiatives" +
+            " and helping us optimize computer systems to accelerate knowledge discovery," +
+            " boost innovation in science and technology, and make our planet greener!\n\n";
 
     String problem="maybe it is overloaded or down! We hope to get some sponsorship soon to move our old CK server to the cloud! In the mean time, please contact the author (Grigori.Fursin@cTuning.org) about this problem!";
 
@@ -314,8 +314,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (!email1.equals(email)) {
                         email = email1;
-                        if (!save_one_string_file(path0+'/'+cemail, email)) {
-                            log.append("ERROR: can't find local configuration!");
+                        String pp=path0+'/'+cemail;
+                        if (!save_one_string_file(pp, email)) {
+                            log.append("ERROR: can't write local configuration ("+pp+"!");
                             return;
                         }
                     }
@@ -654,6 +655,7 @@ public class MainActivity extends AppCompatActivity {
              /*********** Printing local tmp directory **************/
              publishProgress(s_line);
              publishProgress("Local tmp directory: " + path + "\n");
+             publishProgress("User ID: " + email + "\n");
 
              /*********** Obtaining CK server **************/
              publishProgress(s_line);
