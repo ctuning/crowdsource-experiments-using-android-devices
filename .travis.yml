@@ -6,6 +6,9 @@ android:
         - tools
         - build-tools-23.0.2
         - android-22
+        - extra-android-m2repository
+    licenses:
+        - android-sdk-license-.+
 
 before_cache:
     - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
