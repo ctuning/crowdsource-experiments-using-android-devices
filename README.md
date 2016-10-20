@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dsavenko/crowdsource-experiments-using-android-devices.svg?branch=master)](https://travis-ci.org/dsavenko/crowdsource-experiments-using-android-devices)
+[![Build Status](https://travis-ci.org/átuning/crowdsource-experiments-using-android-devices.svg?branch=master)](https://travis-ci.org/ctuning/crowdsource-experiments-using-android-devices)
 
 NEWS
 ====
