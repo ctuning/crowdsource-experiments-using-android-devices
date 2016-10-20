@@ -9,8 +9,8 @@ NEWS
 Introduction
 ============
 
-This CK-powered open-source Android application lets the community 
-participate in experiment crowdsourcing using their 
+This [CK-powered](http://github.com/ctuning/ck) open-source Android application 
+lets the community participate in experiment crowdsourcing using their 
 mobile devices (mobile phones, tablets, IoT, etc)
 and exchange knowledge via public CK servers.
 
@@ -67,12 +67,9 @@ Acknowledgments
 ===============
 
 CK development is coordinated by the [cTuning
-foundation](http://cTuning.org) (non-profit research organization). 
-We thank the [EU TETRACOM 609491 Coordination
-Action](http://tetracom.eu) for initial funding and
-[dividiti](http://dividiti.com) for continuing support. We would also like to
-thank Microsoft Research program for one-year grant to host the CK public
-repository in the Azure cloud.  We are also extremely grateful to all
+foundation](http://cTuning.org) (non-profit research organization)
+and [dividiti](http://dividiti.com). 
+We are also extremely grateful to all
 volunteers for their valuable feedback and contributions.
 
 ![logo](https://github.com/ctuning/ck-guide-images/blob/master/logo-validated-by-the-community-simple.png)
