@@ -45,3 +45,15 @@ E:
 H:
 O: University of Edinburgh, UK
 C: helping test ARM64-based Android mobile devices (flags and OpenCL)
+
+N: Daniil Efremov 
+E:
+O: Xored, Russia
+C: testing and improvements (see another version for DNN crowd-benchmarking)
+W:
+
+N: Dmitry Savenko 
+E:
+O: Xored, Russia
+C: added continuous integration
+W:
