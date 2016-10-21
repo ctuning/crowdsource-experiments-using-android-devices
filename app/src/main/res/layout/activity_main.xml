@@ -11,15 +11,15 @@
         android:id="@+id/t_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="optional email to acknowledge your contributions!"
+        android:hint="acknowledge your contributions!"
         android:inputType="textNoSuggestions|text"
         android:minHeight="12dp"
         android:textSize="14dp"
         android:layout_above="@+id/b_about"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/b_about"
-        android:layout_alignEnd="@+id/b_about">
+        android:layout_alignEnd="@+id/b_about"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView">
     </EditText>
 
     <Button
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:minHeight="12dp"
         android:layout_height="wrap_content"
-        android:text="Get free SDK"
+        android:text="Get open-source SDK"
         android:layout_alignTop="@+id/b_about"
         android:layout_toLeftOf="@+id/b_about"
         android:layout_toStartOf="@+id/b_about" />
@@ -69,12 +69,14 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="run crowd-tuning continuously - requires unlimited internet!"
+        android:text="run continuously - requires unlimited internet!"
         android:id="@+id/c_continuous"
         android:checked="false"
         android:layout_below="@+id/b_stats"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -102,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minHeight="12dp"
-        android:text="Clean log/tmp"
+        android:text="Clean log"
         android:id="@+id/b_clean"
         style="?android:attr/buttonStyleSmall"
         android:layout_alignParentBottom="true"
@@ -119,5 +121,19 @@
         android:layout_toLeftOf="@+id/b_stats"
         android:layout_toStartOf="@+id/b_stats"
         android:layout_alignBottom="@+id/b_stats" />
+
+    <TextView
+        android:text="Optional email/ID:  "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#7f0000"
+        android:gravity="center"
+        android:id="@+id/textView"
+        android:minHeight="12dp"
+        android:textSize="14dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/b_clean"
+        android:layout_below="@+id/log" />
 
 </RelativeLayout>

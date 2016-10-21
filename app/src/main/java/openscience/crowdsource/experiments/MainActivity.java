@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             " and helping us optimize computer systems to accelerate knowledge discovery," +
             " boost innovation in science and technology, and make our planet greener!\n\n";
 
-    String problem="maybe it is overloaded or down! We hope to get some sponsorship soon to move our old CK server to the cloud! In the mean time, please contact the author (Grigori.Fursin@cTuning.org) about this problem!";
+    String problem="maybe it is overloaded or down - please report this problem via collective-knowledge@googlegroups.com !";
 
     String path_opencl="/system/vendor/lib/libOpenCL.so";
 
@@ -1750,7 +1750,7 @@ public class MainActivity extends AppCompatActivity {
                              String[] ret=openme.openme_run_program(chmod744+" ./"+fn, null, path);
                              if (ret[0]!="")
                              {
-                                 publishProgress("\nError: failed to set permissions to library "+px+"\n(\n"+ret[0]+"\n)\nPlease, report above error to authors!\n");
+                                 publishProgress("\nError: failed to set permissions to library "+px+"\n(\n"+ret[0]+"\n"+ret[1]+"\n"+ret[2]+"\n)\nPlease, report above error to authors!\n");
                                  return null;
                              }
                          }
@@ -1869,7 +1869,7 @@ public class MainActivity extends AppCompatActivity {
                  ret=openme.openme_run_program(chmod744+" ./"+bin_file0, null, path);
                  if (ret[0]!="")
                  {
-                     publishProgress("\nError: failed to set 744 permissions to binary file "+bin_file0+"\n("+ret[0]+"\n)\nPlease, report above error to authors!\n");
+                     publishProgress("\nError: failed to set 744 permissions to binary file "+bin_file0+"\n("+ret[0]+"\n"+ret[1]+"\n"+ret[2]+"\n)\nPlease, report above error to authors!\n");
                      return null;
                  }
 
@@ -1899,7 +1899,7 @@ public class MainActivity extends AppCompatActivity {
                          if (ret[0]!="")
                          {
                              publishProgress("\n");
-                             publishProgress("Error: execution failure!\n(\n"+ret[0]+"\n)\nPlease, report above error to authors!\n");
+                             publishProgress("Error: execution failure!\n(\n"+ret[0]+"\n"+ret[1]+"\n"+ret[2]+"\n)\nPlease, report above error to authors!\n");
                              return null;
                          }
 
@@ -1952,7 +1952,7 @@ public class MainActivity extends AppCompatActivity {
                  if (ret[0]!="")
                  {
                      publishProgress("\n");
-                     publishProgress("Error: execution failure!\n(\n"+ret[0]+"\n)\nPlease, report above error to authors!\n");
+                     publishProgress("Error: execution failure!\n(\n"+ret[0]+"\n"+ret[1]+"\n"+ret[2]+"\n)\nPlease, report above error to authors!\n");
                      return null;
                  }
 
@@ -2000,7 +2000,7 @@ public class MainActivity extends AppCompatActivity {
                      totalTime=System.currentTimeMillis()-startTime;
 
                      if (ret[0] != "") {
-                         publishProgress("Error: execution failure!\n(\n"+ret[0]+"\n)\nPlease, report above error to authors!\n");
+                         publishProgress("Error: execution failure!\n(\n"+ret[0]+"\n"+ret[1]+"\n"+ret[2]+"\n)\nPlease, report above error to authors!\n");
                          return null;
                      }
 
@@ -2089,7 +2089,7 @@ public class MainActivity extends AppCompatActivity {
 
                      ret = openme.openme_run_program(chmod744 + " ./" + bin_file1, null, path);
                      if (ret[0] != "") {
-                         publishProgress("\nError: failed to set 744 permissions to binary file " + bin_file1 + "\n(\n"+ret[0]+")\nPlease, report above error to authors!\n");
+                         publishProgress("\nError: failed to set 744 permissions to binary file " + bin_file1 + "\n(\n"+ret[0]+"\n"+ret[1]+"\n"+ret[2]+")\nPlease, report above error to authors!\n");
                          return null;
                      }
 
@@ -2109,7 +2109,7 @@ public class MainActivity extends AppCompatActivity {
                          totalTime = System.currentTimeMillis() - startTime;
 
                          if (ret[0] != "") {
-                             publishProgress("Error: execution failure!\n(\n"+ret[0]+"\n)\nPlease, report above error to authors!\n");
+                             publishProgress("Error: execution failure!\n(\n"+ret[0]+"\n"+ret[1]+"\n"+ret[2]+"\n)\nPlease, report above error to authors!\n");
                              return null;
                          }
 
