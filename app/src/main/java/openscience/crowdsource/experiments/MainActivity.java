@@ -16,37 +16,30 @@
 
 package openscience.crowdsource.experiments;
 
-import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ConfigurationInfo;
 import android.net.Uri;
-import android.opengl.GLES10;
-import android.opengl.GLES10Ext;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import org.ctuning.openme.openme;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -61,15 +54,11 @@ import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GLSurfaceView.Renderer {
 
     String welcome = "We would like to thank you for participating in experiment crowdsourcing " +
             "to collaboratively solve complex problems!\n\n" +
@@ -128,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     static Button b_clean;
     EditText t_email;
+    private GLSurfaceView glSurfaceView;
 
     String fpack="ck-pack.zip";
 
@@ -171,33 +161,9 @@ public class MainActivity extends AppCompatActivity {
             t_email.setText(email.trim());
         }
 
-        //Get GPU name **************************************************
-        new Thread(new Runnable(){
-
-            @Override
-            public void run()
-            {
-                try
-                {
-                    Thread.sleep(800);
-                    MainActivity.this.runOnUiThread(new Runnable(){
-
-                        @Override
-                        public void run()
-                        {
-                            pf_gpu_vendor=String.valueOf(GLES10.glGetString(GL10.GL_VENDOR));
-                            if (pf_gpu_vendor.equals("null")) pf_gpu_vendor="";
-
-                            String x=String.valueOf(GLES10.glGetString(GL10.GL_RENDERER));
-                            if (x.equals("null")) pf_gpu="";
-                            else pf_gpu=pf_gpu_vendor + " " + x;
-                        }
-                    });
-                }
-                catch (InterruptedException e)
-                {}
-            }
-        }).start();
+        this.glSurfaceView = new GLSurfaceView(this);
+        this.glSurfaceView.setRenderer(this);
+        ((ViewGroup) log.getParent()).addView(this.glSurfaceView);
 
         try
         {
@@ -546,6 +512,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return cpu_list;
+    }
+
+    @Override
+    public void onSurfaceCreated(GL10 gl10, EGLConfig config) {
+        pf_gpu_vendor = gl10.glGetString(GL10.GL_VENDOR);
+        if (pf_gpu_vendor.equals("null")) pf_gpu_vendor = "";
+
+        String x = gl10.glGetString(GL10.GL_RENDERER);
+        if (x.equals("null")) pf_gpu = "";
+        else pf_gpu = pf_gpu_vendor + " " + x;
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                glSurfaceView.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    @Override
+    public void onSurfaceChanged(GL10 gl, int width, int height) {
+        // no-op
+    }
+
+    @Override
+    public void onDrawFrame(GL10 gl) {
+        // no-op
     }
 
     /*************************************************************************/
