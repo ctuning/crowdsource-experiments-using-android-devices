@@ -16,6 +16,7 @@
 
 package openscience.crowdsource.experiments;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -86,10 +87,10 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
 
     String url_sdk = "http://github.com/ctuning/ck";
     String url_about = "https://github.com/ctuning/ck/wiki/Advanced_usage_crowdsourcing";
-    String url_stats = "http://cTuning.org/crowd-results";
-    String url_users = "http://cTuning.org/crowdtuning-timeline";
+    String url_stats = "https://cTuning.org/crowd-results";
+    String url_users = "https://cTuning.org/crowdtuning-timeline";
 
-    String url_cserver="http://cTuning.org/shared-computing-resources-json/ck.json";
+    String url_cserver="https://cTuning.org/shared-computing-resources-json/ck.json";
     String repo_uoa="upload";
 
     String s_b_start = "Start";
@@ -128,6 +129,12 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
     /*************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP_MR1) {
+            String[] perms = { Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            requestPermissions(perms, 200);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -734,63 +741,22 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
              publishProgress("Detecting some of your platform features ...\n");
 
              //Get system info **************************************************
-             try {
-                 r=openme.read_text_file_and_convert_to_json("/system/build.prop", "=", false, false);
-             } catch (JSONException e) {
-                 publishProgress("\nError calling OpenME interface (" + e.getMessage() + ") ...\n\n");
-                 return null;
-             }
+             String model=Build.MODEL;
+             String manu=Build.MANUFACTURER;
 
-             try {
-                 if ((Long)r.get("return")>0)
-                     publishProgress("\nProblem during OpenME: "+(String) r.get("error")+"\n\n");
-             } catch (JSONException e) {
-                 publishProgress("\nError calling OpenME interface (" + e.getMessage() + ") ...\n\n");
-                 return null;
-             }
+             if (!model.equals("") && !manu.equals(""))
+                 if (model.toLowerCase().startsWith(manu.toLowerCase()))
+                    model=model.substring(manu.length()+1,model.length());
 
-             String model="";
-             String manu="";
+             if (manu.equals("") && !model.equals("")) manu=model;
 
-             JSONObject ra=null;
+             manu=manu.toUpperCase();
+             model=model.toUpperCase();
 
-             try {
-                 ra=(JSONObject) r.get("dict");
-             } catch (JSONException e) {
-                publishProgress("\nError calling OpenME interface (" + e.getMessage() + ") ...\n\n");
-                return null;
-             }
-
-             if (ra!=null)
-             {
-                 try {
-                    model=(String) ra.get("ro.product.model");
-                 } catch (JSONException e) {
-                     publishProgress("\nError calling OpenME interface (" + e.getMessage() + ") ...\n\n");
-                     return null;
-                 }
-
-                 try {
-                    manu=(String) ra.get("ro.product.manufacturer");
-                 } catch (JSONException e) {
-                     publishProgress("\nError calling OpenME interface (" + e.getMessage() + ") ...\n\n");
-                     return null;
-                 }
-
-                 if (!model.equals("") && !manu.equals(""))
-                     if (model.toLowerCase().startsWith(manu.toLowerCase()))
-                        model=model.substring(manu.length()+1,model.length());
-
-                 if (manu.equals("") && !model.equals("")) manu=model;
-
-                 manu=manu.toUpperCase();
-                 model=model.toUpperCase();
-
-                 pf_system=manu;
-                 if (!model.equals("")) pf_system+=' '+model;
-                 pf_system_model=model;
-                 pf_system_vendor=manu;
-             }
+             pf_system=manu;
+             if (!model.equals("")) pf_system+=' '+model;
+             pf_system_model=model;
+             pf_system_vendor=manu;
 
              //Get processor info **************************************************
              //It's not yet working properly on heterogeneous CPU, like big/little
@@ -819,6 +785,8 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
                  return null;
              }
              if (processor_file==null) processor_file="";
+
+             JSONObject ra=null;
 
              try {
                  ra=(JSONObject) r.get("dict");

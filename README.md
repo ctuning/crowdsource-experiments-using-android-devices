@@ -65,12 +65,15 @@ Testimonials and awards
 * 2014: HiPEAC technology transfer award: [HiPEAC TT winners](https://www.hipeac.net/research/technology-transfer-awards/2014)
 * 2015: ARM and the cTuning foundation use CK to accelerate computer engineering: [HiPEAC Info'45 page 17](https://www.hipeac.net/assets/public/publications/newsletter/hipeacinfo45.pdf), [ARM TechCon'16 presentation and demo](http://schedule.armtechcon.com/session/know-your-workloads-design-more-efficient-systems), [public CK repo](https://github.com/ctuning/ck-wa)
 
+Notes
+=====
+
+* API 29 prevents exec() to run downloaded codeletes - we need to find a new solution.
+
 Acknowledgments
 ===============
 
-CK development is coordinated by the [cTuning
-foundation](http://cTuning.org) (non-profit research organization)
-and [dividiti](http://dividiti.com). 
+CK development is coordinated by the [cTuning foundation](https://cTuning.org) (non-profit research organization).
 We are also extremely grateful to all
 volunteers for their valuable feedback and contributions.
 
